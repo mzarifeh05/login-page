@@ -24,11 +24,35 @@ function Register() {
     function hanldeConfirmPass(e) {
         setConfirmPass(e.target.value);
     }
+
     function handleSubmit() {
-        if (pass === confirmPass)
-            alert("True")
-        else
-            alert("False")
+        if (pass === confirmPass) {
+            fetch("http://localhost:5000/api/auth/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    firstName: firstName,
+                    lastName: lastName,
+                    email: email,
+                    password: pass
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                navigate("/login");
+            })
+            .catch(() => { alert("Registration failed") })
+            
+            setFirstName("");
+            setLastName("");
+            setEmail("");
+            setPass("");
+            setConfirmPass("");
+        } else 
+            alert("Passwords don't match!")
     }
 
     return (
@@ -45,7 +69,7 @@ function Register() {
                     <input onChange={(e) => handlePass(e)} value={pass} type="password" placeholder="Password" />
                     <br />
                     <input  onChange={(e) => hanldeConfirmPass(e)} value={confirmPass} type="password" placeholder="Confirm Password" />
-                    <button>Register</button>
+                    <button onClick={handleSubmit}>Register</button>
                 </form>
                 <div className="links">
                     <Link to="/login">login</Link>
