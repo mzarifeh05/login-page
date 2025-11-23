@@ -1,6 +1,5 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { Navigate } from "react-router-dom";
 
 function Login() {
     const [email, setEmail] = useState();
@@ -33,7 +32,9 @@ function Login() {
             console.log(data);
             navigate("/");
         })
-        
+        .catch(() => {alert("user not found")})
+        setEmail("");
+        setPass("");
     }
 
 
@@ -42,9 +43,9 @@ function Login() {
             <div className="login">
                 <h1>Login Page</h1>
                 <form method="POST">
-                    <input onChange={(e) => handleEmail(e)} type="email" placeholder="email" />
+                    <input onChange={(e) => handleEmail(e)} value={email} type="email" placeholder="email" />
                     <br />
-                    <input onChange={(e) => handlePass(e)}  type="password" placeholder="password" />
+                    <input onChange={(e) => handlePass(e)} value={pass}  type="password" placeholder="password" />
                 </form>
                 <br />
                 <div className="links">
