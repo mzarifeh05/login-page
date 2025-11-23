@@ -18,7 +18,7 @@ function Login() {
     function handleSubmit(e) {
         e.preventDefault();
 
-        fetch("http://192.168.133.194:5000/api/auth/login", {
+        fetch("http://localhost:5000/api/auth/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -29,7 +29,11 @@ function Login() {
             })
         })
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => {
+            console.log(data);
+            navigate("/");
+        })
+        
     }
 
 
