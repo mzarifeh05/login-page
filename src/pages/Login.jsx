@@ -46,6 +46,7 @@ function Login() {
                     <input onChange={(e) => handleEmail(e)} value={email} type="email" placeholder="email" />
                     <br />
                     <input onChange={(e) => handlePass(e)} value={pass}  type="password" placeholder="password" />
+                    <button onClick={handleSubmit}>Submit</button>
                 </form>
                 <br />
                 <div className="links">
@@ -53,7 +54,6 @@ function Login() {
                     <Link to="/">home</Link>
                 </div>
                 <br />
-                <button onClick={handleSubmit}>Submit</button>
             </div>
         </>
     )

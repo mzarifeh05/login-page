@@ -25,7 +25,8 @@ function Register() {
         setConfirmPass(e.target.value);
     }
 
-    function handleSubmit() {
+    function handleSubmit(e) {
+        e.preventDefault();
         if (pass === confirmPass) {
             fetch("http://localhost:5000/api/auth/register", {
                 method: "POST",
