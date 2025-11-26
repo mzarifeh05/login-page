@@ -11,6 +11,7 @@ function Home() {
                 <div className="home-buttons">
                     <Link to="/login" className="home-btn">Login</Link>
                     <Link to="/register" className="home-btn">Register</Link>
+                    <Link to="/profile" className="home-btn">Profile</Link>
                 </div>
             </div>
         </>

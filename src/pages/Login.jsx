@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom"
 function Login() {
     const [email, setEmail] = useState();
     const [pass, setPass] = useState();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     function handleEmail(e) {
         setEmail(e.target.value);
@@ -29,6 +29,7 @@ function Login() {
         })
         .then(res => res.json())
         .then(data => {
+            localStorage.setItem("uesrToken", data.token);
             console.log(data);
             navigate("/");
         })
@@ -43,15 +44,15 @@ function Login() {
             <div className="login">
                 <h1>Login Page</h1>
                 <form method="POST">
-                    <input onChange={(e) => handleEmail(e)} value={email} type="email" placeholder="email" />
+                    <input onChange={(e) => handleEmail(e)} value={email} type="email" placeholder="Email" />
                     <br />
-                    <input onChange={(e) => handlePass(e)} value={pass}  type="password" placeholder="password" />
+                    <input onChange={(e) => handlePass(e)} value={pass}  type="password" placeholder="Password" />
                     <button onClick={handleSubmit}>Submit</button>
                 </form>
                 <br />
                 <div className="links">
-                    <Link to="/register">register</Link>
-                    <Link to="/">home</Link>
+                    <Link to="/">Home</Link>
+                    <Link to="/register">Register</Link>
                 </div>
                 <br />
             </div>

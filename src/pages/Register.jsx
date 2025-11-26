@@ -42,6 +42,7 @@ function Register() {
             })
             .then(res => res.json())
             .then(data => {
+                localStorage.setItem("userToken", data.token);
                 console.log(data);
                 navigate("/login");
             })
@@ -73,8 +74,8 @@ function Register() {
                     <button onClick={handleSubmit}>Register</button>
                 </form>
                 <div className="links">
-                    <Link to="/login">login</Link>
-                    <Link to="/">home</Link>
+                    <Link to="/">Home</Link>
+                    <Link to="/login">Login</Link>
                 </div>
             </div>
         </>
