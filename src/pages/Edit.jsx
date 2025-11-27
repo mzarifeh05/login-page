@@ -7,7 +7,7 @@ function Edit() {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
-    const [photo, setPhoto] = useState();
+    const [photo, setPhoto] = useState(null);
 
     function handleFirstName(e) {
         setFirstName(e.target.value);
@@ -30,12 +30,12 @@ function Edit() {
             return;
         }
 
-        fetch(`http://localhost:5000/api/users/me/`,
-            {
-                method: "GET",
-                headers: { "Authorization": "Bearer " + token}
+        fetch(`http://localhost:5000/api/users/me/`, {
+            method: "GET",
+            headers: {
+                "Authorization": "Bearer " + token
             }
-        )
+        })
         .then(res => res.json())
         .then(data => {
             setFirstName(data.firstName);
@@ -64,8 +64,12 @@ function Edit() {
                 "Authorization": "Bearer " + token,
             },
             body: formData
+            // body: JSON.stringify({
+            //     firstName: firstName,
+            //     lastName: lastName,
+            //     email: email
+            // })
         })  
-
         .then(res => res.json())
         .then(data => {
             console.log(data);
@@ -89,10 +93,7 @@ function Edit() {
                 <input required onChange={(e) => handleEmail(e)} value={email} type="email" placeholder="Email" />
                 <br />
                 <p style={{textAlign: "left", color: "gray", marginBottom: "0"}}>*add a profile picture</p>
-                <input 
-                accept="image/*"
-                onChange={(e) => hanldePhoto(e)}
-                type="file" />
+                <input accept="image/*" onChange={(e) => hanldePhoto(e)} type="file" />
                 <br />
                 <div className="buttons">
                     <button onClick={handleSave}>Save</button>

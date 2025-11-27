@@ -44,7 +44,7 @@ function Register() {
             .then(data => {
                 localStorage.setItem("userToken", data.token);
                 console.log(data);
-                navigate("/login");
+                navigate("/");
             })
             .catch(() => { alert("Registration failed") })
             
@@ -53,7 +53,8 @@ function Register() {
             setEmail("");
             setPass("");
             setConfirmPass("");
-        } else 
+        } 
+        else 
             alert("Passwords don't match!")
     }
 

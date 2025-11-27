@@ -14,21 +14,18 @@ function Profile() {
     useEffect(() => {
         const token = localStorage.getItem("userToken");
 
-        
         console.log("Token:", token);
-        console.log("imageUrl:", imageUrl);
         if (!token) {
             navigate("/login");
             return;
         }
 
-        fetch(`http://localhost:5000/api/users/me`,{
-             method: "GET" ,
+        fetch(`http://localhost:5000/api/users/me`, {
+            method: "GET",
             headers: {
                 "Authorization": "Bearer " + token,
             }
-        }
-        )
+        })
         .then(res => res.json())
         .then(data => {
             setFirstName(data.firstName);
