@@ -49,7 +49,7 @@ function Profile() {
     }
 
     const resolvedImageSrc = imageUrl
-        ? (imageUrl.startsWith("http") ? imageUrl : `http://localhost:5000/${imageUrl}`)
+        ? (imageUrl.startsWith("http") ? imageUrl : `http://localhost:5000${imageUrl}`)
         : profilePlaceholder;
 
     return (
